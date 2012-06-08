@@ -534,7 +534,8 @@ class BaseOAuth(BaseAuth):
         super(BaseOAuth, self).__init__(request, redirect)
         if setting('VAGRANT_ENABLED'):
             self.redirect_uri = "http://127.0.0.1:" + str(setting('VAGRANT_PORT_FORWARD')) + self.redirect
-        self.redirect_uri = self.build_absolute_uri(self.redirect)
+        else:
+            self.redirect_uri = self.build_absolute_uri(self.redirect)
 
     @classmethod
     def get_key_and_secret(cls):
